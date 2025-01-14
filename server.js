@@ -28,7 +28,7 @@ app.use(express.json())
 app.use("/api/product",productRouter)
 app.use("/api/user",routerUser)
 app.use("/api/order",routerOrder)
-let port = process.env.PORT
+let port = process.env.PORT 
 app.listen(port, "localhost", () => {
     console.log("app is listenning on port" + port)
 })
