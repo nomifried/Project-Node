@@ -9,10 +9,6 @@ import fs from "fs/promises"
 
 
 
-
-
-
-
 function PrintToLog(req, res, next){
     try{
         fs.appendFile("./log.txt", `${new Date().toLocaleDateString()} ${req.method} ${req.url}`)
@@ -33,8 +29,8 @@ app.use("/api/user",routerUser)
 app.use("/api/order",routerOrder)
 
 
-let port = process.env.PORT
-app.listen(port, () => {
-
+let port = process.env.PORT || 3000
+console.log("Using port: " + port);
+app.listen(port,'0.0.0.0', () => {
     console.log("app is listenning on port" + port)
 })
