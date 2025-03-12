@@ -3,26 +3,51 @@ import mongoose from 'mongoose';
 
 
 
-export const getAllrPoducts = async(req, res)=> {
-    let limit = req.query.limit || 10;
-    let page = req.query.page || 1;
-    let s = req.query.s || ""
-    let reg = new RegExp(s)
-    try{
-        alert("hhh")
-        // 
-        let data = await productModel.find().sort({name: 1}).skip(((page - 1) * limit)).limit(limit);
-        let totalproduct = await productModel.countDocuments();
-        let totalpages = Math.ceil(totalproduct/limit)
-        res.json({data:data,totalpages:totalpages,currentpage:page})
-    }
-    catch (err){
-        console.log(err)
-        res.status(400).json({title:"cannot get all",message:
-            err.message
-        })
+// export const getAllrPoducts = async(req, res)=> {
+//     let limit = req.query.limit || 10;
+//     let page = req.query.page || 1;
+//     let s = req.query.s || ""
+//     let reg = new RegExp(s)
+//     try{
+//         alert("hhh")
+//         // 
+//         let data = await productModel.find().sort({name: 1}).skip(((page - 1) * limit)).limit(limit);
+//         let totalproduct = await productModel.countDocuments();
+//         let totalpages = Math.ceil(totalproduct/limit)
+//         res.json({data:data,totalpages:totalpages,currentpage:page})
+//     }
+//     catch (err){
+//         console.log(err)
+//         res.status(400).json({title:"cannot get all",message:
+//             err.message
+//         })
 
-    }}
+//     }}
+export const getAllrPoducts = async (req, res) => {
+    let limit = Number(req.query.limit) || 10;
+    let page = Number(req.query.page) || 1;
+
+    try {
+        console.log("Fetching products from DB...");
+
+        let data = await productModel
+            .find()
+            .sort({ name: 1 })
+            .skip((page - 1) * limit)
+            .limit(limit);
+
+        let totalproduct = await productModel.countDocuments();
+        let totalpages = Math.ceil(totalproduct / limit);
+
+        console.log("Products fetched:", data.length); // לוודא שהבאנו נתונים
+
+        res.json({ data: data, totalpages: totalpages, currentpage: page });
+    } catch (err) {
+        console.error("Error fetching products:", err);
+        res.status(400).json({ title: "Cannot get all products", message: err.message });
+    }
+};
+
     export const getById = async (req, res)=>{
         let {id} = req.params
         try{
