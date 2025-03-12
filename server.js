@@ -6,6 +6,7 @@ import routerOrder from "./Routers/Order.js"
 import  {connectToDb} from "./config/db.js"
 import dotenv from "dotenv"
 import fs from "fs/promises"
+import path from "path"
 
 
 
@@ -24,10 +25,11 @@ const app = express()
 app.use(cors());
 connectToDb()
 app.use(PrintToLog)
-app.use(express.json())
-app.use("/api/product",productRouter)
-app.use("/api/user",routerUser)
-app.use("/api/order",routerOrder)
+app.use(express.json());
+app.use("/api/product",productRouter);
+app.use("/api/user",routerUser);
+app.use("/api/order",routerOrder);
+app.use("/images", express.static(path.join(__dirname, "public/images")));
 
 
 let port = process.env.PORT || 3000
