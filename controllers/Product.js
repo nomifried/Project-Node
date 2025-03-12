@@ -1,11 +1,18 @@
 import { productModel } from "../models/Product.js";
+import mongoose from 'mongoose';
 
 
 
 export const getAllrPoducts = async(req, res)=> {
+    let limit = req.query.limit || 10;
+    let page = req.query.page || 1;
+    let s = req.query.s || ""
+    let reg = new RegExp(s)
     try{
-        let data = await productModel.find();
-        res.json(data)
+        let data = await productModel.find({name: reg}).sort({name: 1}).skip(((page - 1) * limit)).limit(limit);
+        let totalproduct = await productModel.countDocuments();
+        let totalpages = Math.ceil(totalproduct/limit)
+        res.json({data:data,totalpages:totalpages,currentpage:page})
     }
     catch (err){
         console.log(err)

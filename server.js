@@ -11,7 +11,7 @@ import fs from "fs/promises"
 
 function PrintToLog(req, res, next){
     try{
-        fs.appendFile("./log.txt", `${new Date().toLocaleDateString()} ${req.method} ${req.url}`)
+         fs.appendFile("./log.txt", `${new Date().toLocaleDateString()} ${req.method} ${req.url}`)
         next();
     }
     catch(err){
@@ -20,6 +20,7 @@ function PrintToLog(req, res, next){
 }
 dotenv.config()
 const app = express()
+
 app.use(cors());
 connectToDb()
 app.use(PrintToLog)
