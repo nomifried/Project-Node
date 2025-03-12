@@ -109,7 +109,7 @@ export async function updateUserPassword(req, res) {
         try{
             let data = await userModel.findOne({password:req.body.password,email:req.body.email})
             if(!data)
-                return res.status(404).json({title:"cannot find user with such details",message:"wrong name or password"})
+                return res.status(404).json({title:"cannot find user with such details",message:"wrong email or password"})
             res.json(data)
         }
         catch(err){
