@@ -21,7 +21,7 @@ function PrintToLog(req, res, next){
 }
 dotenv.config()
 const app = express()
-
+const puth = require("path")
 app.use(cors());
 connectToDb()
 app.use(PrintToLog)
