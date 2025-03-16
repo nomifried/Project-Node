@@ -131,34 +131,34 @@ export const getAllrPoducts = async (req, res) => {
     }
     import { productModel } from "../models/productModel.js";
 
-export const updateStock = async (productId, size) => {
-  try {
-    // מחפשים את המוצר לפי ה-ID
-    const product = await productModel.findById(productId);
+// export const updateStock = async (productId, size) => {
+//   try {
+//     // מחפשים את המוצר לפי ה-ID
+//     const product = await productModel.findById(productId);
 
-    if (!product) {
-      return { success: false, message: "Product not found" };
-    }
+//     if (!product) {
+//       return { success: false, message: "Product not found" };
+//     }
 
-    // מחפשים את המידה בתוך המערך
-    const sizeIndex = product.sizes.findIndex((s) => s.size === size);
+//     // מחפשים את המידה בתוך המערך
+//     const sizeIndex = product.sizes.findIndex((s) => s.size === size);
 
-    if (sizeIndex === -1) {
-      return { success: false, message: "Size not found" };
-    }
+//     if (sizeIndex === -1) {
+//       return { success: false, message: "Size not found" };
+//     }
 
-    // בודקים אם יש מלאי מספיק
-    if (product.sizes[sizeIndex].stock <= 0) {
-      return { success: false, message: "Out of stock" };
-    }
+//     // בודקים אם יש מלאי מספיק
+//     if (product.sizes[sizeIndex].stock <= 0) {
+//       return { success: false, message: "Out of stock" };
+//     }
 
-    // מפחיתים מלאי ושומרים
-    product.sizes[sizeIndex].stock -= 1;
-    await product.save();
+//     // מפחיתים מלאי ושומרים
+//     product.sizes[sizeIndex].stock -= 1;
+//     await product.save();
 
-    return { success: true, message: "Stock updated successfully" };
-  } catch (error) {
-    console.error("Error updating stock:", error);
-    return { success: false, message: "An error occurred" };
-  }
-};
+//     return { success: true, message: "Stock updated successfully" };
+//   } catch (error) {
+//     console.error("Error updating stock:", error);
+//     return { success: false, message: "An error occurred" };
+//   }
+// };

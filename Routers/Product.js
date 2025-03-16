@@ -7,6 +7,6 @@ productRouter.get("/:id",getById)
 productRouter.delete("/:id",deleteById)
 productRouter.post("/",add)
 productRouter.put("/:id",update)
-productRouter.put("/update/stock/:id", updateStock)
+// productRouter.put("/update/stock/:id", updateStock)
 
 export default productRouter;
