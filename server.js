@@ -98,7 +98,7 @@ import dotenv from "dotenv";
 // import jwt from "jsonwebtoken";
 // import bcrypt from 'bcryptjs'
 
-import productRouter from "./Routers/product.js";
+import productRouter from "./Routers/Product.js";
 import routerUser from "./Routers/User.js";
 import routerOrder from "./Routers/Order.js";
 import { connectToDb } from "./config/db.js";
