@@ -3,26 +3,6 @@ import mongoose from 'mongoose';
 
 
 
-// export const getAllrPoducts = async(req, res)=> {
-//     let limit = req.query.limit || 10;
-//     let page = req.query.page || 1;
-//     let s = req.query.s || ""
-//     let reg = new RegExp(s)
-//     try{
-//         alert("hhh")
-//         // 
-//         let data = await productModel.find().sort({name: 1}).skip(((page - 1) * limit)).limit(limit);
-//         let totalproduct = await productModel.countDocuments();
-//         let totalpages = Math.ceil(totalproduct/limit)
-//         res.json({data:data,totalpages:totalpages,currentpage:page})
-//     }
-//     catch (err){
-//         console.log(err)
-//         res.status(400).json({title:"cannot get all",message:
-//             err.message
-//         })
-
-//     }}
 export const getAllrPoducts = async (req, res) => {
     let limit = Number(req.query.limit) || 10;
     let page = Number(req.query.page) || 1;
@@ -129,36 +109,4 @@ export const getAllrPoducts = async (req, res) => {
             return res.status(400).json({title:"cannot add",message:err.message})
         }
     }
-    import { productModel } from "../models/productModel.js";
-
-// export const updateStock = async (productId, size) => {
-//   try {
-//     // מחפשים את המוצר לפי ה-ID
-//     const product = await productModel.findById(productId);
-
-//     if (!product) {
-//       return { success: false, message: "Product not found" };
-//     }
-
-//     // מחפשים את המידה בתוך המערך
-//     const sizeIndex = product.sizes.findIndex((s) => s.size === size);
-
-//     if (sizeIndex === -1) {
-//       return { success: false, message: "Size not found" };
-//     }
-
-//     // בודקים אם יש מלאי מספיק
-//     if (product.sizes[sizeIndex].stock <= 0) {
-//       return { success: false, message: "Out of stock" };
-//     }
-
-//     // מפחיתים מלאי ושומרים
-//     product.sizes[sizeIndex].stock -= 1;
-//     await product.save();
-
-//     return { success: true, message: "Stock updated successfully" };
-//   } catch (error) {
-//     console.error("Error updating stock:", error);
-//     return { success: false, message: "An error occurred" };
-//   }
-// };
+ 
