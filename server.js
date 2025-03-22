@@ -95,8 +95,8 @@ import express from "express";
 import cors from "cors";
 import fs from "fs/promises";
 import dotenv from "dotenv";
-import jwt from "jsonwebtoken";
-import bcrypt from 'bcryptjs'
+// import jwt from "jsonwebtoken";
+// import bcrypt from 'bcryptjs'
 
 import productRouter from "./routers/product.js";
 import routerUser from "./Routers/User.js";
