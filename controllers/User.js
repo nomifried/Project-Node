@@ -96,7 +96,7 @@ export async function updateUserPassword(req, res) {
         if(!req.body.username || !req.body.email || !req.body.password )
             return res.status(404).json({title:"missing parameters",message:"name email password are required"})
         try{
-            let newuser = new userModel(req.body)
+            let newuser = new userModel({...req.body,role:"user"})
             await newuser.save()
             res.json(newuser)
         }
