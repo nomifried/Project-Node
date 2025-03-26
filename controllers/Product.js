@@ -6,6 +6,7 @@ import mongoose from 'mongoose';
 export const getAllrPoducts = async (req, res) => {
     let limit = Number(req.query.limit) || 10;
     let page = Number(req.query.page) || 1;
+    console.log(`Limit: ${limit}, Page: ${page}`);
 
     try {
         console.log("Fetching products from DB...");
